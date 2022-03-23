@@ -128,6 +128,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    //   Echo.channel('posts').listen('postsEnvent', (data) => {
+    //     console.log("dee");
+    // })
     this.$store.dispatch("posts/GetAllPosts");
   },
   computed: {

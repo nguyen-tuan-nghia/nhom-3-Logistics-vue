@@ -159,4 +159,15 @@ class statisticController extends Controller
         }
         return response()->json(['order'=>$order,'cod'=>$cod], 200);
     }}}
+    public function customerStatistic(Request $request)
+    {
+        if (isset($request->search)) {
+            $customer = customer::with('statistic')->where('customers.'.$request->groupBy, 'like', '%' . $request->search . '%')->orderBy('customer.id', 'DESC')->paginate(10);
+            $customer_id = customer::with('statistic')->where('customers.'.$request->groupBy, 'like', '%' . $request->search . '%')->orderBy('customer.id', 'DESC')->get();
+        } else {
+            $customer = customer::with('statistic')->orderBy('customers.id', 'DESC')->paginate(10);
+            $customer_id = customer::with('statistic')->orderBy('customers.id', 'DESC')->get();
+        }
+        return response()->json(['data_all' => $customer, 'data' => $customer_id], 200);
+    }
 }

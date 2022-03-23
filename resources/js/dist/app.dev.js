@@ -24,9 +24,13 @@ var _index = _interopRequireDefault(require("./store/index"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
+var _laravelEcho = _interopRequireDefault(require("laravel-echo"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // Ensure you are using css-loader
+window.io = require('socket.io-client');
+
 _vue["default"].use(_vueAxios["default"], _axios["default"]);
 
 _vue["default"].use(_vuetify["default"]);
@@ -34,6 +38,11 @@ _vue["default"].use(_vuetify["default"]);
 _vue["default"].use(_vue2Editor["default"]);
 
 _vue["default"].use(_vueFlashMessage["default"]);
+
+window.Echo = new _laravelEcho["default"]({
+  broadcaster: 'socket.io',
+  host: window.location.hostname + ':6001'
+});
 
 _vue["default"].use(_vueSocialAuth["default"], {
   providers: {

@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Events\postsEnvent;
 
 class PostsController extends Controller
 {
@@ -31,6 +32,7 @@ class PostsController extends Controller
         $posts->image=$imageName;
         $posts->created_at=Carbon::now('Asia/Ho_Chi_Minh');
         $posts->save();
+        //  broadcast(new postsEnvent($posts));
         return response()->json('ok',200);
     }
     public function index(Request $request){

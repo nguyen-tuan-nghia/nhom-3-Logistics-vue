@@ -12,6 +12,7 @@ use App\Models\shipper_order;
 use App\Models\User;
 use App\Exports\ordersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Events\OrderEvent;
 class orderController extends Controller
 {
     public function export_csv($id){
@@ -66,6 +67,7 @@ class orderController extends Controller
                 $ship->to_wards_name = $request->to_wards_name;
                 $ship->to_address = $request->to_address;
                 $ship->save();
+                // broadcast(new OrderEvent($order, $ship))->toOthers();
                 return response()->json('success', 200);
             }
         }
@@ -104,7 +106,7 @@ class orderController extends Controller
                 } else {
                     $user_id = $user->boss_id;
                 }
-                $order = order::find($id)->where('customer_id', $user_id)->delete();
+                $order = order::where('id',$id)->where('customer_id', $user_id)->delete();
                 return response()->json('ok', 200);
             }
         }

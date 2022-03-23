@@ -10,10 +10,17 @@ import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-load
 import FlashMessage from '@smartweb/vue-flash-message';
 import store from './store/index';
 import moment from 'moment';
+// import Echo from "laravel-echo";
+// window.io = require('socket.io-client');
+
 Vue.use(VueAxios, axios);
 Vue.use(Vuetify);
 Vue.use(Vue2Editor);
 Vue.use(FlashMessage);
+// window.Echo = new Echo({
+//     broadcaster: 'socket.io',
+//     host: window.location.hostname + ':6001',
+// });
 Vue.use(VueSocialauth, {
     providers: {
         facebook: {
@@ -23,7 +30,6 @@ Vue.use(VueSocialauth, {
         }
     }
 });
-
 Vue.component('main-main', require('./app.vue').default);
 Vue.filter('dateformat',function(obj){
     moment.locale('en');

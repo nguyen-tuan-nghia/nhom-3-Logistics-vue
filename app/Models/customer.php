@@ -14,4 +14,7 @@ class customer extends Model
     ];
     protected $primaryKey = 'id';
     protected $table = 'customers';
+    public function statistic(){
+        return $this->hasOne(statistic_cs::class);
+    }
 }

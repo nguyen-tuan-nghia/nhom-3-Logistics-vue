@@ -2,7 +2,7 @@
         <div class="container-fluid">
       <div class="mx-auto" style="width: 700px">
         <div class="card">
-          <div class="card-header">Create Posts</div>
+          <div class="card-header">Create Permission</div>
           <div class="card-body">
             <validation-observer ref="observer" v-slot="{ invalid }">
               <form @submit.prevent="submit">

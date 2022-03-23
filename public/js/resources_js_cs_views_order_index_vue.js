@@ -314,6 +314,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -367,6 +368,13 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters["order/GetAllOrderID"];
     }
   },
+  //   created(){
+  //     Echo.channel('Order')
+  //     .listen('OrderEvent', (data) => {
+  //         console.log(data.data);
+  //         // this.GetAllOrder.push(message)
+  //     })
+  //   },
   watch: {
     selected: function selected() {
       this.url = "/api/customer/order/export/" + this.selected;
@@ -857,7 +865,7 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    Cancel\n                  "
+                                        "\n                      Cancel\n                    "
                                       ),
                                     ]
                                   ),
@@ -874,7 +882,7 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    OK\n                  "
+                                        "\n                      OK\n                    "
                                       ),
                                     ]
                                   ),
@@ -984,7 +992,7 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    Cancel\n                  "
+                                        "\n                      Cancel\n                    "
                                       ),
                                     ]
                                   ),
@@ -1006,7 +1014,7 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    OK\n                  "
+                                        "\n                      OK\n                    "
                                       ),
                                     ]
                                   ),
@@ -1163,11 +1171,11 @@ var render = function () {
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
-                              "\n                  " +
+                              "\n                    " +
                                 _vm._s(
                                   _vm._f("minus")(_vm.GetAllOrder.from + index)
                                 ) +
-                                "\n                "
+                                "\n                  "
                             ),
                           ]),
                           _vm._v(" "),
@@ -1175,29 +1183,29 @@ var render = function () {
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
-                              "\n                  " +
+                              "\n                    " +
                                 _vm._s(Order.to_name) +
-                                "\n                "
+                                "\n                  "
                             ),
                           ]),
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
-                              "\n                  " +
+                              "\n                    " +
                                 _vm._s(Order.to_phone) +
-                                "\n                "
+                                "\n                  "
                             ),
                           ]),
                           _vm._v(" "),
                           _c("td", [
                             _c("span", [_vm._v(_vm._s(Order.to_city_name))]),
-                            _vm._v("\n                  /"),
+                            _vm._v("\n                    /"),
                             _c("span", [
                               _vm._v(_vm._s(Order.to_district_name)),
                             ]),
                             _vm._v(" /"),
                             _c("span", [_vm._v(_vm._s(Order.to_wards_name))]),
-                            _vm._v("\n                  /"),
+                            _vm._v("\n                    /"),
                             _c("span", [_vm._v(_vm._s(Order.to_address))]),
                           ]),
                           _vm._v(" "),
@@ -1257,19 +1265,23 @@ var render = function () {
                               ])
                             : _vm._e(),
                           _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "a",
-                              {
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.print(Order)
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "v-icon",
+                                {
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.print(Order)
+                                    },
                                   },
                                 },
-                              },
-                              [_vm._v("print")]
-                            ),
-                          ]),
+                                [_vm._v("mdi-printer")]
+                              ),
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c("td", [
                             _c(
@@ -1443,7 +1455,7 @@ var render = function () {
                   _c(
                     "v-card-title",
                     { staticClass: "text-h5 grey lighten-2" },
-                    [_vm._v("\n          Order detail\n        ")]
+                    [_vm._v("\n            Order detail\n          ")]
                   ),
                   _vm._v(" "),
                   _c("v-card-text", [
@@ -1453,45 +1465,49 @@ var render = function () {
                     _vm._v(" "),
                     _c("p", [
                       _vm._v(
-                        "\n            Sender: name: " +
+                        "\n              Sender: name: " +
                           _vm._s(_vm.detail.form_name) +
-                          " - phone:\n            " +
+                          " - phone:\n              " +
                           _vm._s(_vm.detail.from_phone) +
-                          "\n          "
+                          "\n            "
                       ),
                     ]),
                     _vm._v(" "),
                     _c("p", [
                       _vm._v(
-                        "\n            Recipient: name:\n            " +
+                        "\n              Recipient: name:\n              " +
                           _vm._s(_vm.detail.to_name) +
-                          " - phone:\n            " +
+                          " - phone:\n              " +
                           _vm._s(_vm.detail.to_phone) +
-                          "\n          "
+                          "\n            "
                       ),
                     ]),
                     _vm._v(" "),
                     _c("p", { staticClass: "card-text" }, [
-                      _vm._v("\n            Send from address:\n            "),
+                      _vm._v(
+                        "\n              Send from address:\n              "
+                      ),
                       _c("span", [_vm._v(_vm._s(_vm.detail.from_city_name))]),
-                      _vm._v("\n            /"),
+                      _vm._v("\n              /"),
                       _c("span", [
                         _vm._v(_vm._s(_vm.detail.from_district_name)),
                       ]),
                       _vm._v(" /"),
                       _c("span", [_vm._v(_vm._s(_vm.detail.from_wards_name))]),
-                      _vm._v("\n            /"),
+                      _vm._v("\n              /"),
                       _c("span", [_vm._v(_vm._s(_vm.detail.from_address))]),
                     ]),
                     _vm._v(" "),
                     _c("p", [
-                      _vm._v("\n            Send to address:\n            "),
+                      _vm._v(
+                        "\n              Send to address:\n              "
+                      ),
                       _c("span", [_vm._v(_vm._s(_vm.detail.to_city_name))]),
-                      _vm._v("\n            /"),
+                      _vm._v("\n              /"),
                       _c("span", [_vm._v(_vm._s(_vm.detail.to_district_name))]),
                       _vm._v(" /"),
                       _c("span", [_vm._v(_vm._s(_vm.detail.to_wards_name))]),
-                      _vm._v("\n            /"),
+                      _vm._v("\n              /"),
                       _c("span", [_vm._v(_vm._s(_vm.detail.to_address))]),
                     ]),
                     _vm._v(" "),
@@ -1571,7 +1587,7 @@ var render = function () {
                   _c(
                     "v-card-title",
                     { staticClass: "text-h5 grey lighten-2" },
-                    [_vm._v("\n          Shipper info\n        ")]
+                    [_vm._v("\n            Shipper info\n          ")]
                   ),
                   _vm._v(" "),
                   _c("v-card-text", [

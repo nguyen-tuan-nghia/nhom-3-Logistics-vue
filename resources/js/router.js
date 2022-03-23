@@ -28,6 +28,10 @@ const routes = [
             path: 'list-User',
             name: 'listAdminUser',
             component: () => import('./admin/views/User/index.vue')
+        },{
+            path: 'list-customer-statistic',
+            name: 'listAdminCustomer',
+            component: () => import('./admin/views/User/customer.vue')
         }, {
             path: 'create-permission',
             name: 'createPermission',

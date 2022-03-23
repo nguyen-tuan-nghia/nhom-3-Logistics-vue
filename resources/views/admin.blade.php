@@ -18,14 +18,14 @@
 
     <!-- admin css-->
     	<!-- css files -->
-    <link href="{{ asset('/public/css/bootstrap.css')}}" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
-    <link href="{{ asset('/public/css/style.css')}}" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="{{ asset('/public/css/font-awesome.min.css')}}" rel="stylesheet"><!-- fontawesome css -->
+    <link href="{{ asset('public/css/bootstrap.css')}}" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+    <link href="{{ asset('public/css/style.css')}}" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="{{ asset('public/css/font-awesome.min.css')}}" rel="stylesheet"><!-- fontawesome css -->
 	<!-- //css files -->
 
 	<!-- google fonts -->
-	<link href="//fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+	{{-- <link href="//fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet"> --}}
 	<!-- //google fonts -->
 
 </head>

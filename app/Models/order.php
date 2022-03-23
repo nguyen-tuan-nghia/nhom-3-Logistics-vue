@@ -14,6 +14,9 @@ class order extends Model
     ];
     protected $primaryKey = 'id';
     protected $table = 'orders';
+    public function ship(){
+        return $this->hasOne(ship::class);
+        }
     public function customer(){
         return $this->belongsTo(customer::class);
         }

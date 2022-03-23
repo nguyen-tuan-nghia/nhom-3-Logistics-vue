@@ -70,6 +70,14 @@ var routes = [//admin
       });
     }
   }, {
+    path: 'list-customer-statistic',
+    name: 'listAdminCustomer',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require('./admin/views/User/customer.vue'));
+      });
+    }
+  }, {
     path: 'create-permission',
     name: 'createPermission',
     component: function component() {

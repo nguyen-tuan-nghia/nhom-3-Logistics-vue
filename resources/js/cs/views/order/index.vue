@@ -165,7 +165,8 @@
                   <td v-if="Order.status != 0">
                     <a @click="shipperdetail(Order)">Shipper info</a>
                   </td>
-                  <td><a @click="print(Order)">print</a></td>
+                  <td><v-icon @click="print(Order)">mdi-printer</v-icon>
+</td>
                   <td>
                     <a @click="detailorder(Order)">Order detail</a>
                   </td>
@@ -348,6 +349,7 @@ export default {
       url:""
     };
   },
+
   mounted() {
     this.$store.dispatch("order/GetAllOrder");
   },
@@ -359,6 +361,13 @@ export default {
       return this.$store.getters["order/GetAllOrderID"];
     },
   },
+//   created(){
+//     Echo.channel('Order')
+//     .listen('OrderEvent', (data) => {
+//         console.log(data.data);
+//         // this.GetAllOrder.push(message)
+//     })
+//   },
   watch:{
       selected(){
           this.url="/api/customer/order/export/"+this.selected;

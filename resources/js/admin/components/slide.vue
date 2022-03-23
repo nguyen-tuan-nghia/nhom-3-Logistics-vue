@@ -128,6 +128,12 @@
                         :to="{ name: 'listAdminUser' }"
                         >List User</router-link
                     >
+                    <router-link
+                        v-show="View_user"
+                        class="collapse-item"
+                        :to="{ name: 'listAdminCustomer' }"
+                        >List Customer</router-link
+                    >
                 </div>
             </div>
         </li>

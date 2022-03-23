@@ -10,7 +10,7 @@ import order from './modules/order';
 import shipper_order from './modules/shipper_order';
 import csPermission from './modules/csPermission';
 import Customer from './modules/Customer';
-
+import customerStatistic from './modules/customerStatistic';
 Vue.use(Vuex);
 const store = new Vuex.Store({
     modules:{
@@ -24,6 +24,7 @@ const store = new Vuex.Store({
         shipper_order:shipper_order,
         csPermission:csPermission,
         Customer:Customer,
+        customerStatistic:customerStatistic
     }
   });
 export default store;

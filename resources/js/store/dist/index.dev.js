@@ -29,6 +29,8 @@ var _csPermission = _interopRequireDefault(require("./modules/csPermission"));
 
 var _Customer = _interopRequireDefault(require("./modules/Customer"));
 
+var _customerStatistic = _interopRequireDefault(require("./modules/customerStatistic"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _vue["default"].use(_vuex["default"]);
@@ -44,7 +46,8 @@ var store = new _vuex["default"].Store({
     order: _order["default"],
     shipper_order: _shipper_order["default"],
     csPermission: _csPermission["default"],
-    Customer: _Customer["default"]
+    Customer: _Customer["default"],
+    customerStatistic: _customerStatistic["default"]
   }
 });
 var _default = store;

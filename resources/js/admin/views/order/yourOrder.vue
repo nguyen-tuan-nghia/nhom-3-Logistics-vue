@@ -199,7 +199,8 @@
                                     <div class="col">
                                         <v-icon @click="detailorder(Order)"
                                             >mdi-pencil</v-icon
-                                        >
+                                        ><br>
+                                        <v-icon @click="print(Order)">mdi-printer</v-icon>
                                     </div>
                                 </div>
                             </div>
@@ -373,6 +374,41 @@ export default {
         },
     },
     methods: {
+    print(order) {
+        order.total_fee=order.total_fee.toString();
+            order.total_fee=order.total_fee.replace(/[^\d]/g, "");
+            order.total_fee=order.total_fee.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+            order.cod=order.cod.toString();
+            order.cod=order.cod.replace(/[^\d]/g, "");
+            order.cod=order.cod.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+      this.axios
+        .get(`/api/customer/order/detail/${order.id}`)
+        .then((res) => {
+
+          this.items_detail = res.data;
+          var a = window.open("", "", "height=1000, width=1000");
+          a.document.write("<html><head>");
+          a.document.write("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>");
+          a.document.write("</head>");
+        a.document.write("<body><div style='margin:auto;wight:200px'>");
+          a.document.write("<h1 style='text-align:center'>Logistic order</h1>");
+          a.document.write("<h5 class=><span>ID: " + order.id + "</span></h5>");
+          a.document.write("<p>Sender: name:" +order.form_name +" - phone: " +order.from_phone +"</p>");
+          a.document.write("<p>Recipient: name:" +order.to_name +" - phone: " +order.to_phone +"</p>");
+          a.document.write("<table class='table'><thead><tr><th>Name</th><th>Weight</th><th>Quantity</th></tr></thead><tbody>");
+          this.items_detail.forEach((element) => {a.document.write("<tr><td>" +element.name +"</td><td>" +element.weight +"</td><td>" +element.quantity +"</td></tr>");});
+          a.document.write("</tbody></table>");
+          a.document.write("<p>Total weight: " + order.total_weight + "</p>");
+          a.document.write("<p>Total fee: " + order.total_fee + " VND</p>");
+          a.document.write("<p>COD: " + order.cod + " VND<p></p>");
+          a.document.write("</div></body></html>");
+          a.document.close();
+          a.print();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
         orderStatus(order) {
             this.status=document.getElementById(`select_status_${order.id}`).value;
             this.axios

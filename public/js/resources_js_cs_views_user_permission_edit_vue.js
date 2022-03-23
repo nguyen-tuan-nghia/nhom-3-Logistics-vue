@@ -3192,7 +3192,9 @@ var render = function () {
   return _c("div", { staticClass: "container-fluid" }, [
     _c("div", { staticClass: "mx-auto", staticStyle: { width: "700px" } }, [
       _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [_vm._v("Create Posts")]),
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("Create Permission"),
+        ]),
         _vm._v(" "),
         _c(
           "div",

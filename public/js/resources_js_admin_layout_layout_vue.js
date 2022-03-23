@@ -499,6 +499,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1798,6 +1804,23 @@ var render = function () {
                       attrs: { to: { name: "listAdminUser" } },
                     },
                     [_vm._v("List User")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.View_user,
+                          expression: "View_user",
+                        },
+                      ],
+                      staticClass: "collapse-item",
+                      attrs: { to: { name: "listAdminCustomer" } },
+                    },
+                    [_vm._v("List Customer")]
                   ),
                 ],
                 1

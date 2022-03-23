@@ -107,6 +107,8 @@ Route::get('/order/findDate',[orderController::class,'findDate']);
 Route::get('/customer/shipper/detail/{id}',[orderController::class,'shipper']);
 Route::get('/customer/order/detail/{id}',[orderController::class,'detail']);
 Route::get('/customer/order/export/{id}',[orderController::class,'export_csv']);
+//admin customer statistic
+Route::get('/customerStatistic/index',[statisticController::class,'customerStatistic']);
 //admin ship-order
 Route::get('/shipper/allorder/index',[orderController::class,'index_ship_order']);
 Route::get('/shipper/allorder/findDate',[orderController::class,'ship_order_findDate']);

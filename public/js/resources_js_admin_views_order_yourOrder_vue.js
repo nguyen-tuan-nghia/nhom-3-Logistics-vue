@@ -338,6 +338,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     var _ref;
@@ -383,15 +384,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
-    orderStatus: function orderStatus(order) {
+    print: function print(order) {
       var _this = this;
+
+      order.total_fee = order.total_fee.toString();
+      order.total_fee = order.total_fee.replace(/[^\d]/g, "");
+      order.total_fee = order.total_fee.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+      order.cod = order.cod.toString();
+      order.cod = order.cod.replace(/[^\d]/g, "");
+      order.cod = order.cod.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+      this.axios.get("/api/customer/order/detail/".concat(order.id)).then(function (res) {
+        _this.items_detail = res.data;
+        var a = window.open("", "", "height=1000, width=1000");
+        a.document.write("<html><head>");
+        a.document.write("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>");
+        a.document.write("</head>");
+        a.document.write("<body><div style='margin:auto;wight:200px'>");
+        a.document.write("<h1 style='text-align:center'>Logistic order</h1>");
+        a.document.write("<h5 class=><span>ID: " + order.id + "</span></h5>");
+        a.document.write("<p>Sender: name:" + order.form_name + " - phone: " + order.from_phone + "</p>");
+        a.document.write("<p>Recipient: name:" + order.to_name + " - phone: " + order.to_phone + "</p>");
+        a.document.write("<table class='table'><thead><tr><th>Name</th><th>Weight</th><th>Quantity</th></tr></thead><tbody>");
+
+        _this.items_detail.forEach(function (element) {
+          a.document.write("<tr><td>" + element.name + "</td><td>" + element.weight + "</td><td>" + element.quantity + "</td></tr>");
+        });
+
+        a.document.write("</tbody></table>");
+        a.document.write("<p>Total weight: " + order.total_weight + "</p>");
+        a.document.write("<p>Total fee: " + order.total_fee + " VND</p>");
+        a.document.write("<p>COD: " + order.cod + " VND<p></p>");
+        a.document.write("</div></body></html>");
+        a.document.close();
+        a.print();
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    orderStatus: function orderStatus(order) {
+      var _this2 = this;
 
       this.status = document.getElementById("select_status_".concat(order.id)).value;
       this.axios.post("/api/order/changeStatus", {
         id: order.id,
         status: this.status
       }).then(function (res) {
-        _this.flashMessage.success({
+        _this2.flashMessage.success({
           title: "Message",
           message: "Change status successfully",
           time: 5000,
@@ -401,7 +439,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(err);
 
         if (err.response.status == 422) {
-          _this.flashMessage.error({
+          _this2.flashMessage.error({
             title: "message",
             message: "Change status faild",
             time: 5000,
@@ -428,7 +466,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch("shipper_order/ShippergetPageOrder", page);
     },
     detailorder: function detailorder(order) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.dialog = true;
       this.detail.id = order.id;
@@ -448,7 +486,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.detail.total_fee = order.total_fee;
       this.detail.cod = order.cod;
       this.axios.get("/api/shipper/order/detail/".concat(order.id)).then(function (res) {
-        _this2.items = res.data;
+        _this3.items = res.data;
       })["catch"](function (err) {});
     }
   }
@@ -1074,6 +1112,19 @@ var render = function () {
                               },
                             },
                             [_vm._v("mdi-pencil")]
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "v-icon",
+                            {
+                              on: {
+                                click: function ($event) {
+                                  return _vm.print(Order)
+                                },
+                              },
+                            },
+                            [_vm._v("mdi-printer")]
                           ),
                         ],
                         1
