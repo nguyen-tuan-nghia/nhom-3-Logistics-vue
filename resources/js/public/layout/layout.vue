@@ -8,7 +8,6 @@
 <script>
 import Hearder from'../components/hearder.vue';
 import Footer from'../components/footer.vue';
-
 export default ({
     components:{
         Hearder,
@@ -16,4 +15,5 @@ export default ({
     }
 })
 </script>
+
 
